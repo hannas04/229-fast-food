@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>229 Fingerfoods & Grills | Elite Digital Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --gold: #C5A059;
+            --black: #080808;
+            --surface: #121212;
+            --white: #FFFFFF;
+            --serif: 'Bodoni Moda', serif;
+            --sans: 'Montserrat', sans-serif;
+            --nav-height: 90px;
+        }
+
+        /* Base Setup */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--black); color: var(--white); font-family: var(--sans); overflow-x: hidden; line-height: 1.6; }
+
+        /* --- 1. FIXED NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: var(--nav-height); z-index: 3000;
+            padding: 0 6%; display: flex; justify-content: space-between; align-items: center;
+            background:#000; backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .logo-container img { height: 70px; width: auto; display: block; }
+
+        .nav-links { display: flex; gap: 35px; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Mobile Burger Icon */
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 7px; z-index: 4001; }
+        .burger span { width: 32px; height: 1.5px; background: var(--gold); transition: 0.4s; }
+
+        /* --- MOBILE NAVIGATION REPAIR --- */
+        @media (max-width: 968px) {
+            .burger { display: flex; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 100%;
+                background: var(--black); flex-direction: column; justify-content: center;
+                align-items: center; transition: 0.6s cubic-bezier(0.8, 0, 0.2, 1); gap: 45px;
+            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.4rem; letter-spacing: 4px; }
+            
+            /* Burger 'X' Animation */
+            .burger.toggle span:nth-child(1) { transform: rotate(-45deg) translate(-6px, 6px); }
+            .burger.toggle span:nth-child(2) { opacity: 0; }
+            .burger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-6px, -6px); }
+        }
+
+        /* --- SECTION STRUCTURE --- */
+        section { padding: 120px 8%; position: relative; }
+        .title-group { text-align: center; margin-bottom: 80px; }
+        .title-group h2 { font-family: var(--serif); font-size: clamp(2.5rem, 6vw, 4rem); color: var(--gold); font-style: italic; }
+        .gold-divider { width: 50px; height: 1px; background: var(--gold); margin: 20px auto; }
+
+        /* 2. HERO */
+        .hero {
+            height: 100vh; display: flex; align-items: center; padding: 0 8%;
+            background: linear-gradient(to right, rgba(8, 8, 8, 0.932), transparent), 
+                        url('Recent Events-grid-6.jpg') center/cover fixed;
+        }
+        .hero-content h1 { font-family: var(--serif); font-size: clamp(3rem, 10vw, 7rem); line-height: 0.95; margin-bottom: 25px; }
+        .hero-content span { color: var(--gold); }
+        .btn-gold { 
+            padding: 20px 45px; border: 1px solid var(--gold); color: var(--gold); 
+            text-decoration: none; display: inline-block; letter-spacing: 4px; font-size: 0.8rem;
+            text-transform: uppercase; font-weight: 600; transition: 0.4s;
+        }
+        .btn-gold:hover { background: var(--gold); color: var(--black); box-shadow: 0 0 25px rgba(197, 160, 89, 0.3); }
+
+        /* 3. PHILOSOPHY */
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 80px; align-items: center; }
+        .about-text h3 { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 30px; }
+        .about-text p { color: #888; margin-bottom: 25px; font-size: 1.1rem; }
+        .about-img { border: 1px solid var(--gold); padding: 15px; }
+        .about-img img { width: 100%; display: block; filter: grayscale(0.5) contrast(1.1); }
+
+        /* 4. ELITE SERVICES */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: #0f0f0f; padding: 70px 40px; text-align: center; border: 1px solid #1a1a1a; transition: 0.4s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 30px; }
+
+        /* 5. VISUAL MENU SECTIONS */
+        .menu-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .menu-item { height: 500px; overflow: hidden; position: relative; }
+        .menu-item img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s; }
+        .menu-item:hover img { transform: scale(1.1); }
+        .menu-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 1; transition: 0.4s; }
+        .menu-overlay h3 { font-family: var(--serif); font-size: 3rem; letter-spacing: 2px; }
+
+        /* 6. THE GRILL MASTER */
+        .grill-parallax { height: 400px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1974') center/cover fixed; display: flex; align-items: center; justify-content: center; }
+
+        /* 7. TRAVEL/GLOBAL */
+        .travel-section { background: var(--gold); color: var(--black); text-align: center; padding: 100px 8%; }
+        .travel-section h2 { font-family: var(--serif); font-size: 3rem; margin-bottom: 20px; }
+
+        /* 8. CANAPÉ ART */
+        .canape-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .canape-grid img { width: 100%; height: 280px; object-fit: cover; border-radius: 2px; }
+
+        /* 9. STATS */
+        .stats-wrap { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 50px; text-align: center; border-bottom: 1px solid #222; padding-bottom: 100px; }
+        .stat-val { font-family: var(--serif); font-size: 4rem; color: var(--gold); display: block; }
+
+        /* 10. QUOTE */
+        .testimonial { max-width: 900px; margin: 0 auto; text-align: center; font-family: var(--serif); font-size: 2rem; font-style: italic; color: #ccc; }
+
+        /* 11. INSTAGRAM GRID */
+        .insta-footer { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; height: 180px; }
+        .insta-footer div { background: #111; }
+
+        /* 12. CONTACT */
+        footer { padding: 100px 8% 50px; background: #050505; border-top: 1px solid #1a1a1a; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; }
+
+        /* === NEW SECTIONS STYLES === */
+        
+        /* Signature Dishes */
+        .signature-dishes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .dish-card { background: #0a0a0a; border: 1px solid #1a1a1a; overflow: hidden; transition: 0.4s; }
+        .dish-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+        .dish-image { height: 280px; transition: 0.6s; }
+        .dish-card:hover .dish-image { transform: scale(1.05); }
+        .dish-info { padding: 35px 30px; }
+        .dish-info h3 { font-family: var(--serif); font-size: 1.6rem; margin-bottom: 15px; }
+        .dish-info p { color: #888; font-size: 0.95rem; line-height: 1.7; }
+        .dish-tag { display: inline-block; margin-top: 20px; padding: 8px 20px; background: var(--gold); color: var(--black); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; }
+
+        /* Process Timeline */
+        .process-timeline { max-width: 900px; margin: 0 auto; }
+        .process-step { display: flex; gap: 40px; margin-bottom: 60px; align-items: flex-start; }
+        .step-number { font-family: var(--serif); font-size: 4rem; color: var(--gold); line-height: 1; font-style: italic; min-width: 100px; }
+        .step-content h3 { font-size: 1.8rem; margin-bottom: 15px; font-weight: 600; }
+        .step-content p { color: #888; font-size: 1.05rem; line-height: 1.8; }
+
+        /* Booking Form */
+        .booking-container { display: grid; grid-template-columns: 2fr 1fr; gap: 60px; max-width: 1400px; margin: 0 auto; }
+        .booking-form { background: #0a0a0a; padding: 60px; border: 1px solid #222; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .form-group { display: flex; flex-direction: column; margin-bottom: 30px; }
+        .form-group label { color: var(--gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+        .form-group input, .form-group select, .form-group textarea { 
+            background: #000; border: 1px solid #333; color: var(--white); padding: 18px 20px; 
+            font-family: var(--sans); font-size: 1rem; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
+            outline: none; border-color: var(--gold); 
+        }
+        .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .checkbox-label { display: flex; align-items: center; gap: 12px; color: #ccc; cursor: pointer; font-size: 0.95rem; }
+        .checkbox-label input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--gold); }
+        .btn-submit { 
+            width: 100%; padding: 22px; background: var(--gold); color: var(--black); 
+            border: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; 
+            text-transform: uppercase; cursor: pointer; transition: 0.3s; display: flex; 
+            justify-content: center; align-items: center; gap: 15px;
+        }
+        .btn-submit:hover { background: #d4af6a; transform: translateY(-2px); }
+        .form-note { text-align: center; color: #666; font-size: 0.8rem; margin-top: 20px; }
+
+        .booking-sidebar { display: flex; flex-direction: column; gap: 30px; }
+        .quick-contact { background: #0a0a0a; padding: 40px; border: 1px solid #222; }
+        .quick-contact h3 { font-family: var(--serif); font-size: 1.8rem; margin-bottom: 30px; }
+        .contact-method { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 25px; }
+        .contact-method i { font-size: 1.8rem; color: var(--gold); }
+        .contact-method strong { display: block; margin-bottom: 5px; font-size: 0.9rem; }
+        .contact-method p { color: #888; font-size: 0.95rem; }
+        
+        .booking-info { background: linear-gradient(135deg, var(--gold) 0%, #d4af6a 100%); padding: 40px; color: var(--black); }
+        .booking-info h4 { font-size: 1.3rem; margin-bottom: 20px; font-weight: 600; }
+        .booking-info ul { list-style: none; }
+        .booking-info li { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); font-size: 0.95rem; }
+        .booking-info li:last-child { border-bottom: none; }
+        .booking-info li:before { content: "✓ "; margin-right: 10px; font-weight: bold; }
+
+        /* FAQ */
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #222; margin-bottom: 0; }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 35px 0; cursor: pointer; transition: 0.3s; }
+        .faq-question:hover { color: var(--gold); }
+        .faq-question h3 { font-size: 1.3rem; font-weight: 500; }
+        .faq-question i { color: var(--gold); font-size: 1.2rem; transition: 0.3s; }
+        .faq-item.active .faq-question i { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s; }
+        .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 30px; }
+        .faq-answer p { color: #888; line-height: 1.8; font-size: 1.05rem; }
+
+        /* Gallery Masonry */
+        .gallery-masonry { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 5px; padding: 40px 0 0;
+        }
+        .gallery-item { overflow: hidden; height: 300px; }
+        .gallery-item.tall { grid-row: span 2; height: 605px; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; filter: grayscale(0.3); }
+        .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0); }
+
+        /* Client Testimonials Slider */
+        .testimonials-slider { max-width: 1000px; margin: 0 auto; position: relative; overflow: hidden; }
+        .testimonial-slide { display: none; text-align: center; padding: 40px; }
+        .testimonial-slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .testimonial-text { font-family: var(--serif); font-size: 1.8rem; font-style: italic; color: #ccc; margin-bottom: 30px; line-height: 1.6; }
+        .testimonial-author { color: var(--gold); font-size: 1.1rem; font-weight: 600; letter-spacing: 2px; }
+        .testimonial-role { color: #666; font-size: 0.9rem; margin-top: 5px; }
+        .slider-dots { display: flex; justify-content: center; gap: 15px; margin-top: 40px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #333; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--gold); transform: scale(1.3); }
+
+        /* Pricing Tiers */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .pricing-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 60px 40px; text-align: center; transition: 0.4s; position: relative; }
+        .pricing-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .pricing-card.featured { border-color: var(--gold); background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); }
+        .pricing-badge { position: absolute; top: -15px; right: 30px; background: var(--gold); color: var(--black); padding: 8px 20px; font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; }
+        .pricing-title { font-family: var(--serif); font-size: 2.2rem; margin-bottom: 20px; }
+        .pricing-price { font-family: var(--serif); font-size: 3rem; color: var(--gold); margin-bottom: 10px; }
+        .pricing-desc { color: #888; margin-bottom: 40px; font-size: 0.95rem; }
+        .pricing-features { list-style: none; margin-bottom: 40px; }
+        .pricing-features li { padding: 12px 0; border-bottom: 1px solid #1a1a1a; color: #ccc; font-size: 0.95rem; }
+        .pricing-features li:last-child { border-bottom: none; }
+
+        @media (max-width: 768px) {
+            .menu-gallery { grid-template-columns: 1fr; }
+            .canape-grid { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .booking-container { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .process-step { flex-direction: column; gap: 20px; }
+            .step-number { font-size: 3rem; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .gallery-masonry { grid-template-columns: 1fr; }
+            .gallery-item.tall { height: 300px; grid-row: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="logo.jpg" alt="229_logo">
+        </a>
+        
+        <div class="burger" id="burger">
+            <span></span><span></span><span></span>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Story</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#booking">Booking</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p style="letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px;">Est. in Surulere</p>
+            <h1>Crafting <span>Exclusive</span> <br>Grill Experiences.</h1>
+            <a href="https://wa.me/2348155095977" class="btn-gold">Direct Inquiry</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2 style="font-family: var(--serif); color: var(--gold); font-size: 3rem; margin-bottom: 20px;">The Culinary Heritage</h2>
+                <p>229 Fingerfoods and Grills is not just a catering service—it is a commitment to the art of the bite. Based in Surulere, we have built a reputation for excellence by fusing traditional smoke techniques with high-end presentation.</p>
+                <p>Whether it is a private dinner or a global destination event, our team delivers precision and flavor in equal measure.</p>
+            </div>
+            <div class="about-img">
+                <img src="about us.jpg">
+            </div>
+        </div>
+    </section>
+
+    <section id="services" style="background: var(--surface);">
+        <div class="title-group"><h2>The Vertical Suite</h2><div class="gold-divider"></div></div>
+        <div class="grid-3">
+            <div class="card"><i class="fas fa-gem"></i><h3>Corporate Elite</h3><p>Catering for brand launches and executive board meetings.</p></div>
+            <div class="card"><i class="fas fa-dove"></i><h3>Bespoke Weddings</h3><p>Artisanal small chops for luxury celebrations.</p></div>
+            <div class="card"><i class="fas fa-plane-departure"></i><h3>Global Reach</h3><p>Full-service logistics for destination events.</p></div>
+        </div>
+    </section>
+
+    <!-- NEW: SIGNATURE DISHES -->
+    <section>
+        <div class="title-group"><h2>Signature Creations</h2><div class="gold-divider"></div></div>
+        <div class="signature-dishes">
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('Suya-Spiced\ Beef\ Skewers.jpg') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Suya-Spiced Beef Skewers</h3>
+                    <p>Premium beef cuts marinated in our secret suya blend, grilled to perfection over open flames.</p>
+                    <span class="dish-tag">BESTSELLER</span>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('Gourmet\ Spring\ Rolls.jpg') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Gourmet Spring Rolls</h3>
+                    <p>Handcrafted with locally-sourced vegetables and premium proteins, served with exclusive dipping sauces.</p>
+                    <span class="dish-tag">SIGNATURE</span>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('https://images.unsplash.com/photo-1598103442097-8b74394b95c6?q=80&w=2080') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Lobster Canapés</h3>
+                    <p>Delicate lobster meat on artisan crackers, finished with caviar and microgreens.</p>
+                    <span class="dish-tag">LUXURY</span>
+                </div>
+            </div>
+            <div class="dish-card">
+                <div class="dish-image" style="background: url('Flame-Grilled\ Chicken\ Wings.jpg') center/cover;"></div>
+                <div class="dish-info">
+                    <h3>Flame-Grilled Chicken Wings</h3>
+                    <p>Marinated for 24 hours in our special blend, charred to smoky perfection.</p>
+                    <span class="dish-tag">CLASSIC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="title-group"><h2>Signature Chapters</h2><div class="gold-divider"></div></div>
+        <div class="menu-gallery">
+            <div class="menu-item">
+                <img src="Small Chops.jpg">
+                <div class="menu-overlay"><h3>Small Chops</h3></div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069">
+                <div class="menu-overlay"><h3>Premium Grills</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="grill-parallax">
+        <h2 style="font-family: var(--serif); font-size: 4rem; text-transform: uppercase;">The Fire Master</h2>
+    </div>
+
+    <!-- NEW: THE 229 PROCESS -->
+    <section style="background: var(--surface);">
+        <div class="title-group"><h2>The 229 Process</h2><div class="gold-divider"></div></div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Consultation</h3>
+                    <p>We begin with an in-depth discussion to understand your vision, preferences, and dietary requirements.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Menu Curation</h3>
+                    <p>Our culinary team designs a bespoke menu tailored to your event's theme and guest profile.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Preparation</h3>
+                    <p>Premium ingredients are sourced and prepared with meticulous attention to detail.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Execution</h3>
+                    <p>On event day, our team delivers flawless service with precision timing and presentation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="travel-section">
+        <h2>Available To Travel</h2>
+        <p style="letter-spacing: 2px; font-weight: 600;">Lagos • Abuja • London • Destination Global</p>
+    </section>
+
+    <section>
+        <div class="title-group"><h2>Canapé Artistry</h2><div class="gold-divider"></div></div>
+        <div class="canape-grid">
+            <img src="Canapé Artistry-1.jpg">
+            <img src="Canapé Artistry-2.jpg">
+            <img src="Canapé Artistry-3.jpg">
+            <img src="Canapé Artistry-4.jpg">
+        </div>
+    </section>
+
+    <!-- NEW: PRICING PACKAGES -->
+    <section style="background: var(--surface);">
+        <div class="title-group"><h2>Service Packages</h2><div class="gold-divider"></div></div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-title">Essentials</h3>
+                <div class="pricing-price">From ₦150K</div>
+                <p class="pricing-desc">Perfect for intimate gatherings</p>
+                <ul class="pricing-features">
+                    <li>30-50 Guests</li>
+                    <li>4 Small Chops Varieties</li>
+                    <li>Professional Setup</li>
+                    <li>2 Hours Service</li>
+                    <li>Basic Disposables</li>
+                </ul>
+                <a href="#booking" class="btn-gold" style="display: block; text-align: center;">Select Package</a>
+            </div>
+            <div class="pricing-card featured">
+                <span class="pricing-badge">MOST POPULAR</span>
+                <h3 class="pricing-title">Premium</h3>
+                <div class="pricing-price">From ₦350K</div>
+                <p class="pricing-desc">Ideal for corporate & weddings</p>
+                <ul class="pricing-features">
+                    <li>100-150 Guests</li>
+                    <li>8 Small Chops + Grills</li>
+                    <li>Serving Staff Included</li>
+                    <li>4 Hours Service</li>
+                    <li>Premium Presentation</li>
+                    <li>Custom Menu Options</li>
+                </ul>
+                <a href="#booking" class="btn-gold" style="display: block; text-align: center;">Select Package</a>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">Luxury</h3>
+                <div class="pricing-price">Custom</div>
+                <p class="pricing-desc">Bespoke experience for elite events</p>
+                <ul class="pricing-features">
+                    <li>200+ Guests</li>
+                    <li>Unlimited Menu Selection</li>
+                    <li>Full Service Team</li>
+                    <li>Unlimited Duration</li>
+                    <li>Chef On-Site</li>
+                    <li>Destination Service</li>
+                    <li>Custom Branding</li>
+                </ul>
+                <a href="#booking" class="btn-gold" style="display: block; text-align: center;">Get Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-wrap">
+        <div><span class="stat-val">4.7K</span><p>FOLLOWERS</p></div>
+        <div><span class="stat-val">500+</span><p>EVENTS</p></div>
+        <div><span class="stat-val">10+</span><p>EXPERTS</p></div>
+    </section>
+
+    <!-- NEW: CLIENT TESTIMONIALS -->
+    <section style="background: #000;">
+        <div class="title-group"><h2>Client Voices</h2><div class="gold-divider"></div></div>
+        <div class="testimonials-slider">
+            <div class="testimonial-slide active">
+                <p class="testimonial-text">"229 delivered excellence beyond expectations. The presentation was impeccable, and our guests couldn't stop talking about the food."</p>
+                <div class="testimonial-author">ADEBAYO WILLIAMS</div>
+                <div class="testimonial-role">Corporate Event Planner</div>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"From consultation to execution, every detail was handled with professionalism. Our wedding reception was truly unforgettable."</p>
+                <div class="testimonial-author">CHIOMA & TUNDE</div>
+                <div class="testimonial-role">Wedding Couple</div>
+            </div>
+            <div class="testimonial-slide">
+                <p class="testimonial-text">"229 delivers a flavor profile that is unmatched in the Lagos luxury circuit. They've become our exclusive caterer for all high-profile events."</p>
+                <div class="testimonial-author">LAGOS LUXURY BRANDS</div>
+                <div class="testimonial-role">Corporate Client</div>
+            </div>
+            <div class="slider-dots">
+                <span class="dot active" onclick="changeSlide(0)"></span>
+                <span class="dot" onclick="changeSlide(1)"></span>
+                <span class="dot" onclick="changeSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: BOOKING FORM SECTION -->
+    <section id="booking" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
+        <div class="title-group">
+            <h2>Reserve Your Experience</h2>
+            <div class="gold-divider"></div>
+            <p style="color: #888; max-width: 600px; margin: 20px auto 0;">Submit your inquiry and our team will respond within 24 hours to discuss your event details.</p>
+        </div>
+        
+        <div class="booking-container">
+            <form class="booking-form" id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" name="phone" required placeholder="080XXXXXXXX">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Event Date *</label>
+                        <input type="date" name="date" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Event Type *</label>
+                        <select name="eventType" required>
+                            <option value="">Select event type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="private">Private Dinner</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Guests *</label>
+                        <input type="number" name="guests" required placeholder="Number of guests" min="1">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Event Location *</label>
+                    <input type="text" name="location" required placeholder="Lagos, Abuja, International...">
+                </div>
+
+                <div class="form-group">
+                    <label>Service Selection *</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="smallchops"> Small Chops
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="grills"> Premium Grills
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="canapes"> Canapés
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="services" value="fullcatering"> Full Catering
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Details</label>
+                    <textarea name="message" rows="5" placeholder="Tell us about your vision, dietary requirements, or special requests..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    Submit Inquiry
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <p class="form-note">By submitting, you agree to be contacted by our team regarding your event.</p>
+            </form>
+
+            <div class="booking-sidebar">
+                <div class="quick-contact">
+                    <h3>Prefer Direct Contact?</h3>
+                    <div class="contact-method">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <p>+234 815 509 5977</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Call Us</strong>
+                            <p>+234 907 906 0548</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Response Time</strong>
+                            <p>Within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-info">
+                    <h4>What Happens Next?</h4>
+                    <ul>
+                        <li>Receive confirmation within 24hrs</li>
+                        <li>Schedule consultation call</li>
+                        <li>Receive custom proposal</li>
+                        <li>Finalize event details</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: FAQ SECTION -->
+    <section style="background: var(--black);">
+        <div class="title-group"><h2>Frequently Asked</h2><div class="gold-divider"></div></div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is your minimum order requirement?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our minimum order varies by service type. For small chops, we require a minimum of 50 pieces. For full catering services, we recommend a minimum of 30 guests to ensure the best experience and value.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How far in advance should I book?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We recommend booking at least 2-3 weeks in advance for standard events. For large-scale events, weddings, or destination services, please book 4-6 weeks ahead to ensure availability and optimal planning.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you cater to dietary restrictions?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely. We accommodate vegetarian, vegan, gluten-free, halal, and other dietary requirements. Please inform us during booking so we can customize your menu accordingly.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What areas do you serve?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We're based in Surulere, Lagos, and serve all of Lagos and Abuja. We also provide destination catering services internationally. Additional logistics fees may apply for locations outside Lagos mainland.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is included in your service?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our service includes menu consultation, food preparation, professional presentation, serving staff (for larger events), and cleanup. We also provide serving equipment, utensils, and disposables as needed.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What are your payment terms?</h3>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We require a 50% deposit upon booking confirmation, with the balance due 48 hours before your event. We accept bank transfers and mobile payments. Full payment terms will be outlined in your service agreement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: GALLERY SHOWCASE -->
+    <section style="padding: 0;">
+        <div class="title-group" style="padding: 80px 8% 0;"><h2>Recent Events</h2><div class="gold-divider"></div></div>
+        <div class="gallery-masonry">
+            <div class="gallery-item tall"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070" alt="Wedding setup"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069" alt="Corporate event"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070" alt="Food spread"></div>
+            <div class="gallery-item tall"><img src="Recent Events-2.jpg" alt="Party setup"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069" alt="Outdoor event"></div>
+            <div class="gallery-item"><img src="Recent Events-1.jpg" alt="Grilling"></div>
+        </div>
+    </section>
+
+    <div class="insta-footer">
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <img src="logo.jpg" alt="229" style="height: 60px; margin-bottom: 25px;">
+                <p style="color: #666; max-width: 350px;">The executive standard for artisanal finger foods and professional grills. Based in Surulere, Lagos.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--gold); margin-bottom: 25px; letter-spacing: 2px;">LOGISTICS</h4>
+                <p>08155095977</p>
+                <p>09079060548</p>
+            </div>
+            <div>
+                <h4 style="color: var(--gold); margin-bottom: 25px; letter-spacing: 2px;">SOCIAL</h4>
+                <div style="font-size: 1.5rem; display: flex; gap: 20px;">
+                    <a href="#" style="color:white;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="color:white;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // MOBILE NAV LOGIC - FIXED & TESTED
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            burger.classList.toggle('toggle');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                burger.classList.remove('toggle');
+            });
+        });
+
+        // FAQ ACCORDION
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // TESTIMONIAL SLIDER
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function changeSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Auto-advance testimonials
+        setInterval(() => {
+            const next = (currentSlide + 1) % slides.length;
+            changeSlide(next);
+        }, 6000);
+
+        // BOOKING FORM SUBMISSION
+        document.getElementById('bookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const services = [];
+            formData.getAll('services').forEach(service => services.push(service));
+            
+            const message = `
+*NEW BOOKING INQUIRY*
+
+Name: ${formData.get('name')}
+Phone: ${formData.get('phone')}
+Email: ${formData.get('email')}
+Event Date: ${formData.get('date')}
+Event Type: ${formData.get('eventType')}
+Expected Guests: ${formData.get('guests')}
+Location: ${formData.get('location')}
+Services: ${services.join(', ')}
+Additional Details: ${formData.get('message')}
+            `.trim();
+            
+            const whatsappUrl = `https://wa.me/2348155095977?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            alert('Thank you! Redirecting you to WhatsApp to complete your inquiry.');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
