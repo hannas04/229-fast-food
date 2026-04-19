@@ -275,8 +275,8 @@
         @media (max-width: 768px) {
             nav { padding: 0 4%; }
             .nav-links { gap: 20px; }
-            section { padding: 80px 6%; }
-            .hero { padding: 40px 6%; min-height: auto; }
+            section { padding: 80px 6%; overflow: hidden; }
+            .hero { padding: 40px 6%; min-height: auto; margin-top: 40px; }
             .hero-content h1 { font-size: clamp(2.4rem, 6.5vw, 4rem); }
             .btn-gold { padding: 14px 28px; font-size: 0.7rem; }
             .menu-gallery { grid-template-columns: 1fr; }
@@ -301,7 +301,8 @@
         }
 
         @media (max-width: 480px) {
-            .hero { padding: 30px 5%; }
+            section { padding: 80px 5%; overflow: hidden; }
+            .hero { padding: 30px 5%; margin-top: 20px; }
             .hero-content h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); line-height: 1.08; margin-bottom: 15px; }
             .hero-subtitle { font-size: 1rem; margin-bottom: 20px; }
             .btn-gold { padding: 12px 24px; font-size: 0.75rem; letter-spacing: 2px; white-space: normal; }
