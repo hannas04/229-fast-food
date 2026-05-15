@@ -74,29 +74,30 @@
         /* 2. HERO */
         .hero {
             height: 100vh;
-            min-height: calc(100vh - var(--nav-height)); display: flex; align-items: center; justify-content: center; 
+            min-height: calc(100vh - var(--nav-height));
+            display: flex; align-items: center; justify-content: center;
             padding: 60px 8%; margin-top: var(--nav-height);
-            background: linear-gradient(135deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.85) 50%, rgba(197, 160, 89, 0.1) 100%), 
-                        linear-gradient(45deg, transparent 40%, rgba(0,0,0,0.3) 100%), 
-                        repeating-linear-gradient(90deg, #1a1a1a 0px, #1a1a1a 2px, #0f0f0f 2px, #0f0f0f 4px) center/cover fixed;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600') center/cover fixed;
         }
         @media (max-width: 1200px) {
             .hero {
-                background: linear-gradient(135deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.85) 50%, rgba(197, 160, 89, 0.1) 100%), 
-                            url('Recent Events-grid-6.jpg') center/cover fixed;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
+                            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600') center/cover fixed;
             }
         }
         @media (max-width: 768px) {
             .hero {
-                background: linear-gradient(135deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.85) 50%, rgba(197, 160, 89, 0.1) 100%), 
-                            url('Recent Events-grid-6.jpg') center/cover scroll;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.35)),
+                            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600') center/cover scroll;
             }
         }
+
         .hero-content { width: 100%; max-width: 950px; }
         .hero-content h1 { font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 1.08; margin-bottom: 20px; letter-spacing: -0.4px; }
         .hero-content span { color: var(--gold); }
         .hero-subtitle { font-size: 1.15rem; color: #ccc; margin-bottom: 30px; max-width: 700px; line-height: 1.6; }
-        .btn-gold { 
+        .btn-gold {
             padding: 16px 35px; border: 1px solid var(--gold); background: var(--gold); color: var(--black);
             text-decoration: none; display: inline-block; letter-spacing: 3px; font-size: 0.75rem;
             text-transform: uppercase; font-weight: 600; transition: 0.3s; white-space: nowrap;
@@ -118,6 +119,18 @@
         .about-text p { color: #888; margin-bottom: 25px; font-size: 1.1rem; }
         .about-img { border: 1px solid var(--gold); padding: 15px; }
         .about-img img { width: 100%; display: block; filter: grayscale(0.5) contrast(1.1); }
+
+        .founder-section { background: linear-gradient(135deg, #090909 0%, #121212 100%); }
+        .founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; align-items: center; }
+        .founder-card { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .founder-image { border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 24px; overflow: hidden; }
+        .founder-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .founder-copy h3 { font-family: var(--serif); font-size: 2.8rem; margin-bottom: 20px; }
+        .founder-copy p { color: #ccc; line-height: 1.8; margin-bottom: 25px; }
+        .founder-list { list-style: none; display: grid; gap: 14px; }
+        .founder-list li { position: relative; padding-left: 30px; color: #888; }
+        .founder-list li:before { content: "✓"; position: absolute; left: 0; top: 3px; color: var(--gold); font-weight: 700; }
+        .founder-highlight { color: var(--gold); }
 
         /* 4. ELITE SERVICES */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
@@ -392,7 +405,15 @@
         </ul>
     </nav>
 
-    <section class="hero" id="home">
+     <section class="hero" id="home" data-aos="fade-up">
+        <div class="hero-content">
+            <p style="letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px;">Est. in Surulere</p>
+            <h1>Crafting <span>Exclusive</span> <br>Grill Experiences.</h1>
+            <a href="https://wa.me/2348155095977" class="btn-gold">Direct Inquiry</a>
+        </div>
+    </section>
+
+    <!-- <section class="hero" id="home">
         <div class="hero-content">
             <h1><span>229</span><br>Fingerfoods & Grills<br><br><span>Where Taste</span><br><span>Meets Perfection</span></h1>
             
@@ -401,8 +422,8 @@
                 <a href="https://glovo.go.link/open?link_type=store&store_id=496028&adj_t=11309sjt&adjust_deeplink=glovoapp%3A%2F%2Fopen%3Flink_type%3Dstore%26store_id%3D496028" class="btn-gold" target="_blank">Order on Glovo</a>
             </div> -->
 
-            <!-- Happy Clients Section -->
-            <div class="happy-clients">
+           
+            <!-- <div class="happy-clients">
                 <span class="happy-clients-label">⭐ Trusted by 500+ Happy Clients</span>
                 <div class="clients-faces">
                     <div class="client-face">😊</div>
@@ -414,7 +435,7 @@
                 <div class="clients-text"><strong>4.7★</strong> Average Rating</div>
             </div>
         </div>
-    </section>
+    </section>  -->
 
     <section id="about">
         <div class="about-grid">
@@ -467,6 +488,26 @@
             <div class="card" data-aos="zoom-in"><i class="fas fa-gem"></i><h3>Corporate Elite</h3><p>Catering for brand launches and executive board meetings.</p></div>
             <div class="card" data-aos="zoom-in"><i class="fas fa-dove"></i><h3>Bespoke Weddings</h3><p>Artisanal small chops for luxury celebrations.</p></div>
             <div class="card" data-aos="zoom-in"><i class="fas fa-plane-departure"></i><h3>Global Reach</h3><p>Full-service logistics for destination events.</p></div>
+        </div>
+    </section>
+
+    <section class="founder-section" data-aos="fade-up">
+        <div class="title-group"><h2>Meet Our CEO</h2><div class="gold-divider"></div></div>
+        <div class="founder-grid">
+            <div class="founder-image" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" alt="CEO portrait">
+            </div>
+            <div class="founder-copy" data-aos="fade-left">
+                <h3>Chef Sola Adeniyi</h3>
+                <p>Founder and CEO of 229 Fingerfoods & Grills, Chef Sola is the creative force behind every luxury menu. With a passion for premium flavor, elegant presentation, and hospitality, he brings a personal touch to every event.</p>
+                <p>Trusted by luxury brands and private hosts, he leads a team dedicated to seamless delivery, memorable service, and unforgettable culinary experiences.</p>
+                <ul class="founder-list">
+                    <li>Over 10 years leading premium catering</li>
+                    <li>Specialist in luxury finger foods and grills</li>
+                    <li>Hands-on event oversight and bespoke menu design</li>
+                    <li>Trusted by weddings, corporate launches, and destination clients</li>
+                </ul>
+            </div>
         </div>
     </section>
 
