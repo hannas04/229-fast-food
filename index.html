@@ -78,18 +78,18 @@
             display: flex; align-items: center; justify-content: center;
             padding: 60px 8%; margin-top: var(--nav-height);
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
-                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600') center/cover fixed;
+                        url('Recent\ Events-grid-6.jpg') center/cover fixed;
         }
         @media (max-width: 1200px) {
             .hero {
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.25)),
-                            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600') center/cover fixed;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.788)),
+                            url('Recent\ Events-grid-6.jpg') center/cover fixed;
             }
         }
         @media (max-width: 768px) {
             .hero {
-                background: linear-gradient(180deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.35)),
-                            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600') center/cover scroll;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.719), rgba(0, 0, 0, 0.712)),
+                            url('Recent\ Events-grid-6.jpg') center/cover scroll;
             }
         }
 
@@ -119,6 +119,17 @@
         .about-text p { color: #888; margin-bottom: 25px; font-size: 1.1rem; }
         .about-img { border: 1px solid var(--gold); padding: 15px; }
         .about-img img { width: 100%; display: block; filter: grayscale(0.5) contrast(1.1); }
+
+        .event-pics { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; align-items: stretch; }
+        .event-pic-card { position: relative; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); background: #0a0a0a; transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .event-pic-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(0,0,0,0.35); }
+        .event-pic-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.88); }
+        .event-pic-card:hover img { transform: scale(1.08); filter: brightness(1); }
+        .event-pic-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 20px; background: linear-gradient(180deg, transparent, rgba(0,0,0,0.72)); color: #fff; font-family: var(--serif); font-size: 1.05rem; }
+        .event-pic-caption span { color: var(--gold); }
+        @media (max-width: 768px) {
+            .event-pics { grid-template-columns: 1fr; }
+        }
 
         .founder-section { background: linear-gradient(135deg, #090909 0%, #121212 100%); }
         .founder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px; align-items: center; }
@@ -316,8 +327,8 @@
         @media (max-width: 480px) {
             section { padding: 80px 5%; overflow: hidden; }
             .hero { padding: 30px 5%; margin-top: 20px; }
-            .hero-content h1 { font-size: clamp(2.6rem, 8vw, 4.5rem); line-height: 1.08; margin-bottom: 15px; }
-            .hero-subtitle { font-size: 1rem; margin-bottom: 20px; }
+            .hero-content h1 { font-size: clamp(3.8rem, 8vw, 4.5rem); line-height: 1.08; margin-bottom: 15px; }
+            .hero-subtitle { font-size: 2rem; margin-bottom: 20px; }
             .btn-gold { padding: 12px 24px; font-size: 0.75rem; letter-spacing: 2px; white-space: normal; }
             div[style*="flex"] { flex-direction: column !important; gap: 12px !important; }
             .clients-faces { gap: 3px; }
@@ -407,35 +418,14 @@
 
      <section class="hero" id="home" data-aos="fade-up">
         <div class="hero-content">
-            <p style="letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px;">Est. in Surulere</p>
+            <p style="letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px;">229 fingerfood & grills</p>
             <h1>Crafting <span>Exclusive</span> <br>Grill Experiences.</h1>
             <a href="https://wa.me/2348155095977" class="btn-gold">Direct Inquiry</a>
         </div>
     </section>
 
-    <!-- <section class="hero" id="home">
-        <div class="hero-content">
-            <h1><span>229</span><br>Fingerfoods & Grills<br><br><span>Where Taste</span><br><span>Meets Perfection</span></h1>
-            
-            <!-- <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-top: 40px;">
-                <a href="https://wa.me/2348155095977" class="btn-gold">Direct Inquiry</a>
-                <a href="https://glovo.go.link/open?link_type=store&store_id=496028&adj_t=11309sjt&adjust_deeplink=glovoapp%3A%2F%2Fopen%3Flink_type%3Dstore%26store_id%3D496028" class="btn-gold" target="_blank">Order on Glovo</a>
-            </div> -->
-
-           
-            <!-- <div class="happy-clients">
-                <span class="happy-clients-label">⭐ Trusted by 500+ Happy Clients</span>
-                <div class="clients-faces">
-                    <div class="client-face">😊</div>
-                    <div class="client-face">🎉</div>
-                    <div class="client-face">😍</div>
-                    <div class="client-face">👍</div>
-                    <div class="client-face">💯</div>
-                </div>
-                <div class="clients-text"><strong>4.7★</strong> Average Rating</div>
-            </div>
-        </div>
-    </section>  -->
+   
+               
 
     <section id="about">
         <div class="about-grid">
@@ -455,7 +445,33 @@
                 </div>
             </div>
             <div class="about-img" data-aos="fade-left">
-                <img src="about us.jpg">
+                <img src="meal-2.jpeg">
+            </div>
+        </div>
+    </section>
+
+    <section class="event-pics-section" data-aos="fade-up">
+        <div class="title-group"><h2>Event Pics</h2><div class="gold-divider"></div></div>
+        <div class="event-pics">
+            <div class="event-pic-card" data-aos="zoom-in">
+                <img src="meal-1.jpeg" alt="Elegant outdoor event">
+                <div class="event-pic-caption">Elegant Setup</div>
+            </div>
+            <div class="event-pic-card" data-aos="zoom-in">
+                <img src="meal-5.jpeg" alt="Food presentation">
+                <div class="event-pic-caption">Plated Perfection</div>
+            </div>
+            <div class="event-pic-card" data-aos="zoom-in">
+                <img src="meal-3.jpeg" alt="Corporate dining experience">
+                <div class="event-pic-caption">Corporate Dining</div>
+            </div>
+            <div class="event-pic-card" data-aos="zoom-in">
+                <img src="meal-4.jpeg" alt="Canape display">
+                <div class="event-pic-caption">Canapé Styling</div>
+            </div>
+            <div class="event-pic-card" data-aos="zoom-in">
+                <img src="meal-6.jpeg" alt="Chef in action">
+                <div class="event-pic-caption">Chef In Action</div>
             </div>
         </div>
     </section>
@@ -485,7 +501,7 @@
     <section id="services" style="background: var(--surface);">
         <div class="title-group" data-aos="fade-up"><h2>The Vertical Suite</h2><div class="gold-divider"></div></div>
         <div class="grid-3">
-            <div class="card" data-aos="zoom-in"><i class="fas fa-gem"></i><h3>Corporate Elite</h3><p>Catering for brand launches and executive board meetings.</p></div>
+            <div class="card" data-aos="zoom-in"><i class="fas fa-gem"></i><h3>Corporate npmElite</h3><p>Catering for brand launches and executive board meetings.</p></div>
             <div class="card" data-aos="zoom-in"><i class="fas fa-dove"></i><h3>Bespoke Weddings</h3><p>Artisanal small chops for luxury celebrations.</p></div>
             <div class="card" data-aos="zoom-in"><i class="fas fa-plane-departure"></i><h3>Global Reach</h3><p>Full-service logistics for destination events.</p></div>
         </div>
@@ -495,10 +511,10 @@
         <div class="title-group"><h2>Meet Our CEO</h2><div class="gold-divider"></div></div>
         <div class="founder-grid">
             <div class="founder-image" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200" alt="CEO portrait">
+                <img src="ceo.jpeg" alt="CEO portrait">
             </div>
             <div class="founder-copy" data-aos="fade-left">
-                <h3>Chef Sola Adeniyi</h3>
+                <h3>Abdul Wasiu Kasali</h3>
                 <p>Founder and CEO of 229 Fingerfoods & Grills, Chef Sola is the creative force behind every luxury menu. With a passion for premium flavor, elegant presentation, and hospitality, he brings a personal touch to every event.</p>
                 <p>Trusted by luxury brands and private hosts, he leads a team dedicated to seamless delivery, memorable service, and unforgettable culinary experiences.</p>
                 <ul class="founder-list">
