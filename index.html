@@ -344,6 +344,48 @@
             transform: none;
         }
 
+        .whatsapp-float {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 62px;
+            height: 62px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+            text-decoration: none;
+            z-index: 5000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(18px);
+            transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+        }
+
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .whatsapp-float.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                right: 16px;
+                bottom: 16px;
+                width: 54px;
+                height: 54px;
+            }
+        }
+
         /* PERFORMANCE OPTIMIZATION */
         img { display: block; }
     </style>
@@ -440,32 +482,6 @@
             <div class="about-img" data-aos="fade-left">
                 <img src="meal-2.jpeg" alt="About meal" decoding="async">
             </div>
-        </div>
-    </section>
-
-    <section class="event-pics-section" data-aos="fade-up">
-        <div class="title-group"><h2>Event Pics</h2><div class="gold-divider"></div></div>
-        <div class="event-pics">
-            <div class="event-pic-card" data-aos="zoom-in">
-                <img src="meal-1.jpeg" alt="Elegant outdoor event" decoding="async">
-                <div class="event-pic-caption">Elegant Setup</div>
-            </div>
-            <div class="event-pic-card" data-aos="zoom-in">
-                <img src="meal-5.jpeg" alt="Food presentation" decoding="async">
-                <div class="event-pic-caption">Plated Perfection</div>
-            </div>
-            <div class="event-pic-card" data-aos="zoom-in">
-                <img src="meal-3.jpeg" alt="Corporate dining experience" decoding="async">
-                <div class="event-pic-caption">Corporate Dining</div>
-            </div>
-            <div class="event-pic-card" data-aos="zoom-in">
-                <img src="meal-4.jpeg" alt="Canape display" decoding="async">
-                <div class="event-pic-caption">Canapé Styling</div>
-            </div>
-            <!-- <div class="event-pic-card" data-aos="zoom-in">
-                <img src="meal-6.jpeg" alt="Chef in action" decoding="async">
-                <div class="event-pic-caption">Chef In Action</div>
-            </div> -->
         </div>
     </section>
 
@@ -970,6 +986,10 @@
         </div>
     </footer>
 
+    <a href="https://wa.me/2348155095977" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg class="icon icon-whatsapp" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+    </a>
+
     <script>
         // PRICING PACKAGE ORDER FUNCTION
         function orderPackage(packageName, price, items) {
@@ -1093,6 +1113,16 @@ ${formData.get('message') || 'None'}
         // Speed optimization: let the browser decode images asynchronously
         document.querySelectorAll('img').forEach(img => {
             img.decoding = 'async';
+        });
+
+        // WhatsApp float button show on scroll
+        const whatsappFloat = document.querySelector('.whatsapp-float');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 120) {
+                whatsappFloat.classList.add('show');
+            } else {
+                whatsappFloat.classList.remove('show');
+            }
         });
     </script>
 </body>
